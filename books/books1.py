@@ -9,6 +9,33 @@ a sorted list of authors or book titles.
 import sys
 import csv
 
+# handles action input: if user specifies authors, the program sorts by authors
+# no input or other input assumes a sort by books
+try:
+    if sys.argv[2].lower() == 'authors':
+        action = 'authors'
+        item = 2
+    else:
+        action = 'books'
+        item = 0
+except:
+    action = 'books'
+    item = 0
+
+# sorts normally unless specified 'reverse' by user
+# also sorts reverse if 'reverse' specified in sys.argv[2]
+try:
+    if sys.argv[3].lower() == 'reverse':
+        sortReverse = True
+except IndexError:
+    try:
+        if sys.argv[2].lower() == 'reverse':
+            sortReverse = True
+        else:
+            sortReverse = False
+    except:
+        sortReverse = False
+
 # checks if there is a CSV file referenced in the command line
 # returns the lines of the CSV file as elements in a list
 def import_csv(action='books'):
@@ -19,44 +46,38 @@ def import_csv(action='books'):
             for row in books_csv:
                 f_ls.append(row)
     except:
-        print('No CSV file.')
+        print('Usage: python3 books1.py input-file [action] [sort-direction]', file=sys.stderr)
+        print('At the very least, please include .csv file!')
         sys.exit()
 
     return f_ls
 
 # checks if the user specifies an action and sort order
 # prints a list based on user input
-def sortnprint(ls):
-    try:
-        item = 0
-        if sys.argv[2].lower() == 'authors':
-            item = 2
-    except:
-        item = 0
+def sort_list(csv_rows):
 
     target_list = []
-    for line in ls:
-        if line[item] not in target_list:
+    for line in csv_rows:
+        if item == 2:
+            author = line[item].split("(")[0]
+            author_lastName = author.split(' ')[-2]
+            if [author_lastName,author] not in target_list:
+                target_list.append([author_lastName,author])
+        elif line[item] not in target_list:
             target_list.append(line[item])
 
-    try:
-        if sys.argv[3].lower() == 'reverse':
-            sortReverse = True
-    except IndexError:
-        if sys.argv[2].lower() == 'reverse':
-            sortReverse = True
-        else:
-            sortReverse = False
-    except:
-        sortReverse = True
+    return sorted(target_list, reverse = sortReverse)
 
-    target_list = sorted(target_list, reverse = sortReverse)
-    for thing in target_list:
-        print(thing)
+def print_list(sorted_list):
+    for thing in sorted_list:
+        if action == 'books':
+            print(thing)
+        else:
+            print(thing[1])
 
 def main():
     file_list = import_csv()
-    sortnprint(file_list)
+    print_list(sort_list(file_list))
 
 if __name__ == '__main__':
     main()
