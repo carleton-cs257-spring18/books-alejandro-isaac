@@ -25,6 +25,9 @@ except IndexError:
     sortReverse = False
 
 def createList():
+    """
+    Creates a sorted list of 
+    """
     with open(csv_file, newline = '') as csvfile:
         reader = csv.reader(csvfile)
         target_list = []
