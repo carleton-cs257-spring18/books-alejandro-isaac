@@ -10,7 +10,7 @@ import sys
 import csv
 
 # handles action input: if user specifies authors, the program sorts by authors
-# no input or other input assumes a sort by books
+# no input or other input -> assumes to sort by books
 try:
     if sys.argv[2].lower() == 'authors':
         action = 'authors'
