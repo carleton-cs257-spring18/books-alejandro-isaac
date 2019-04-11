@@ -7,10 +7,11 @@ import booksdatasource
 import unittest
 
 class BooksDataSourceTest(unittest.TestCase):
-    def set_up(self):
+    def setUp(self):
+        self.books_data_source = booksdatasource.BooksDataSource(books.csv, authors.csv, books_authors.csv)
         pass
 
-    def tear_down(self):
+    def tearDown(self):
         pass
 
 if __name__ == '__main__':

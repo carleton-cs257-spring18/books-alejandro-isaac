@@ -27,7 +27,7 @@ class BooksDataSource:
          'birth_year': 1775, 'death_year': 1817}
 
     For a living author, the death_year is represented in the author's
-    Python dictionary as None.
+    Python dictionary  as None.
 
         {'id': 77, 'last_name': 'Murakami', 'first_name': 'Haruki',
          'birth_year': 1949, 'death_year': None}
