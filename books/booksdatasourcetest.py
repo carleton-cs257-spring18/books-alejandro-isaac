@@ -2,7 +2,7 @@
     booksdatasourcetest.py | books phase 2
     Alejandro Gallardo & Isaac Reynaldo, 11 April 2019
     unit test for booksdatasource.py
-    implements PyUnit
+    implements unittest
 '''
 
 import booksdatasource
@@ -47,6 +47,7 @@ BooksDataSource.books() tests
 	def test_books_all_parameters_none(self):
 	#assumes 47 is correct length of returned list
 		self.assertEqual(47,len(self.books_data_source.books()))
+        pass
 
 	def test_books_search_by_author(self):
 		books = self.books_data_source.books(author_id=10)
@@ -57,7 +58,7 @@ BooksDataSource.books() tests
 	def test_books_search_by_search_text(self):
 		books = self.books_data_source.books(search_text='clear')
 		for book in books:
-			self.assertIn(clear,book.title)
+			self.assertIn('clear',book.title)
 		pass
 
 	def test_books_search_by_start_year(self):
