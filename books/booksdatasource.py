@@ -92,6 +92,96 @@ class BooksDataSource:
             QUESTION: How about ValueError? And if so, for which parameters?
             Raises ValueError if author_id is non-None but is not a valid author ID.
 				OUR ANSWER: Yes, but just for author_id.
+
+             
+
+The following conceptual framework can be applied to all methods
+ --------------------------------------------
+                all possible situations
+
+                arguments == [0, 0, 0 ,0]
+                arguments == [0, 0, 0 ,1]
+                arguments == [0, 0, 1 ,0]
+                arguments == [0, 0, 1 ,1]
+
+                arguments == [0, 1, 0 ,0]
+                arguments == [0, 1, 0 ,1]
+                arguments == [0, 1, 1 ,0]
+                arguments == [0, 1, 1 ,1]
+
+                arguments == [1, 0, 0 ,0]
+                arguments == [1, 0, 0 ,1]
+                arguments == [1, 0, 1 ,0]
+                arguments == [1, 0, 1 ,1]
+
+                arguments == [1, 1, 0 ,0]
+                arguments == [1, 1, 0 ,1]
+                arguments == [1, 1, 1 ,0]
+                arguments == [1, 1, 1 ,1]
+                
+--------------------------------------------
+main books() method: dealing with all possible situations
+--------------------------------------------                
+#[author_id, search_text, start_year, end_year] 
+#with corresponding indices [0,1,2,3]
+
+                provided_arguments = [author_id, search_text, start_year, end_year]
+
+                index_corresponding_to_argument = 0
+                for item in provided_arguments:
+                    if item == 1:
+                        filtered_books = all_books.filterBooks(index_corresponding_to_argument):
+                    index_corresponding_to_argument++
+
+
+--------------------------------------------
+1 filterBooks method: highest level of abstraction
+--------------------------------------------    
+filter books will exist
+inside the class books_list
+
+
+                filterBooks(self, index_input):
+
+                """
+                filters book by author, search text, start year, end year, respectively corresponding with 
+                an index inputs of 0, 1, 2, 3
+
+                """
+                    if index_input = 0:
+                        filtered_books = book_list.filter_by_author_id() 
+                        ##since we are already inside the book_list class, book_list within the class might
+                        ## just be a list. In that case, we could do filter_by_author_id(book_list)
+
+                    if index_input = 1:
+                        filtered_books = book_list.filter_by_search_text()
+
+                    if index_input = 2:
+                        filtered_books = book_list.filter_by_start_year()
+                    
+                    if index_input = 3:
+                        filtered_books = book_list.filter_by_end_year()
+
+                    return filtered_books
+
+
+--------------------------------------------
+4 filter methods: lower level of abstraction
+--------------------------------------------  
+
+                filter_by_author_id():
+                    for book in books_list
+
+                filter_by_search_text():
+
+                filter_by_start_year():
+
+                filter_by_end_year():
+
+
+
+                
+
         '''
         return []
 
