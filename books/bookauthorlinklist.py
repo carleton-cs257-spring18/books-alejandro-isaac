@@ -22,9 +22,15 @@ class BookAuthorLinkList:
 
 
     def get_author_from_book(self, book_id):
-        author_ids = self.book_to_author_link[book_id]
-        return author_ids
+        try:
+            author_ids = self.book_to_author_link[book_id]
+            return author_ids
+        except KeyError:
+            raise ValueError
 
     def get_book_from_author(self, author_id):
-        book_ids = self.author_to_book_link[author_id]
-        return book_ids
+        try:
+            book_ids = self.author_to_book_link[author_id]
+            return book_ids
+        except KeyError:
+            raise ValueError

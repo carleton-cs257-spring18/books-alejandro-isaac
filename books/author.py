@@ -8,8 +8,10 @@ class Author:
             'first_name':author_info[2], 'birth_year':int(author_info[3]),
             'death_year': None
         }
-        if type(author_info[4]) is int:
-            self.author['death_year'] = author_info[4]
+        try:
+            self.author['death_year'] = int(author_info[4])
+        except:
+            pass
 
     def get_author(self):
         return self.author
@@ -28,6 +30,3 @@ class Author:
 
     def get_death_year(self):
         return self.author['death_year']
-
-    def get_birth_year(author):
-            return author["birth_year"]
