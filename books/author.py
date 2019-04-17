@@ -28,3 +28,6 @@ class Author:
 
     def get_death_year(self):
         return self.author['death_year']
+
+    def get_birth_year(author):
+            return author["birth_year"]

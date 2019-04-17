@@ -17,9 +17,12 @@ from author import *
 class BooksDataSource:
     def __init__(self, books_filename, authors_filename, books_authors_link_filename):
         self.all_books = BookList(books_filename)
-        self.all_authors = AuthorList(authors_filename)
+        self.all_authors = AuthorList(authors_filename,books_authors_link_filename)
         self.all_book_author_links = BookAuthorLinkList(books_authors_link_filename)
         pass
+
+    def test_function(self):
+        print(self.all_authors.author_list2)
 
     def book(self, book_id):
         book = self.all_books.get_book_from_id(book_id)
@@ -28,19 +31,19 @@ class BooksDataSource:
     def books(self, *, author_id=None, search_text=None, start_year=None, end_year=None, sort_by='title'):
         book_list = []
 
-        if author_id:
+        if author_id != None:
             book_list = self.all_books.get_book_from_author_id(author_id, self.all_book_author_links, book_list)
-        if search_text:
+        if search_text != None:
             book_list = self.all_books.get_book_from_search_text(search_text, book_list)
-        if start_year:
+        if start_year != None:
             book_list = self.all_books.get_book_from_start_year(start_year, book_list)
-        if end_year:
+        if end_year != None:
             book_list = self.all_books.get_book_from_end_year(end_year, book_list)
 
-        # if all none run this code block
         book_obj_list = self.all_books.book_list
-        for book_obj in book_obj_list:
-            book_list.append(book_obj.get_book())
+        if (author_id and search_text and start_year and end_year) == None:
+            for book_obj in book_obj_list:
+                book_list.append(book_obj.get_book())
 
         book_list = self.all_books.sort_book_list(sort_by, book_list)
 
@@ -75,4 +78,19 @@ class BooksDataSource:
 
             See the BooksDataSource comment for a description of how an author is represented.
         '''
-        return []
+        author_list = self.all_authors.author_list
+
+        if book_id != None:
+            author_list = self.all_authors.filter_authors_by_book_id(book_id, author_list)
+        if search_text != None:
+            author_list = self.all_authors.filter_authors_by_search_text(search_text, author_list)
+        if start_year != None:
+            author_list = self.all_authors.filter_authors_by_start_year(start_year, author_list)
+        if end_year != None:
+            author_list = self.all_authors.filter_authors_by_end_year(end_year, author_list)
+
+        # author_list = self.all_authors.sort_authors(author_list, sort_by)
+        #didn't finish sort method
+        return author_list
+
+        # return []
