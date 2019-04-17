@@ -11,6 +11,8 @@
 from booklist import BookList
 from authorlist import AuthorList
 from bookauthorlinklist import *
+from book import *
+from author import *
 
 class BooksDataSource:
     def __init__(self, books_filename, authors_filename, books_authors_link_filename):
@@ -35,10 +37,13 @@ class BooksDataSource:
         if end_year:
             book_list = self.all_books.get_book_from_end_year(end_year, book_list)
 
-        print('self.all_books: ', self.all_books)
-        print('self.all_books.book_list: ' self.all_books.book_list)
+        # if all none run this code block
+        book_obj_list = self.all_books.book_list
+        for book_obj in book_obj_list:
+            book_list.append(book_obj.get_book())
 
         book_list = self.all_books.sort_book_list(sort_by, book_list)
+
         return book_list
 
     def author(self, author_id):
