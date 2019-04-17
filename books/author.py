@@ -6,8 +6,10 @@ class Author:
         self.author = {
             'id':int(author_info[0]), 'last_name':author_info[1],
             'first_name':author_info[2], 'birth_year':int(author_info[3]),
-            'death_year':int(author_info[4])
+            'death_year': None
         }
+        if type(author_info[4]) is int:
+            self.author['death_year'] = author_info[4]
 
     def get_author(self):
         return self.author

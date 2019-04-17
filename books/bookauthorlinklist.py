@@ -1,16 +1,30 @@
-import bookauthorlink
-import csvreader
+from csvreader import *
 
 class BookAuthorLinkList:
 
     def __init__(self, book_author_link_filename):
-        book_author_link_csv_as_list = open_books_csv(book_author_link_filename)
+        book_author_link_csv_as_list = get_csv_as_list(book_author_link_filename)
+        self.book_to_author_link = {}
+        self.author_to_book_link = {}
+        for link in book_author_link_csv_as_list:
+            book_id = int(link[0])
+            author_id = int(link[1])
+            if book_id not in self.book_to_author_link:
+                self.book_to_author_link[book_id] = [author_id]
+            elif author_id not in self.book_to_author_link[book_id]:
+                self.book_to_author_link[book_id].append(author_id)
 
-        for csv_line in book_author_link_csv_as_list:
-            add_
+            if author_id not in self.author_to_book_link:
+                self.author_to_book_link[author_id] = [book_id]
+            elif book_id not in self.author_to_book_link[author_id]:
+                self.author_to_book_link[author_id].append(book_id)
+        #for csv_line in book_author_link_csv_as_list:
 
-    def add_book_authors_link(self, book_authors_link_info):
-        self.book_author_link_list.append(book_authors_link_info)
 
-    def get_book_authors_link_list(self):
-        return book_author_link_list
+    def get_author_from_book(self, book_id):
+        author_ids = self.book_to_author_link[book_id]
+        return author_ids
+
+    def get_book_from_author(self, author_id):
+        book_ids = self.author_to_book_link[author_id]
+        return book_ids
