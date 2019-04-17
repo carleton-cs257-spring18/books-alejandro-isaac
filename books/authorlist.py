@@ -42,87 +42,73 @@ class AuthorList:
                 filtered_authors.append(author)
         return filtered_authors
 
-    # def get_birth_year(author):
-    #     return author["birth_year"]
+    def get_birth_year(author):
+        return author["birth_year"]
 
-    # def sort_authors(self,input_authors, sort_by):
-    #     sorted_authors = []
-    #     print(input_authors.sort(key =))
+    def sort_authors(self,input_authors, sort_by):
+        sorted_authors = []
+        print(input_authors.sort(key =))
 
-    #     # if sort_by == 'birth_year':
-    #     #     sorted_authors = input_authors.sort(key=get_birth_year)
-    #     # if sort_by == 'last_name':
-    #     #     sorted_authors = sorted(input_authors, key= author["last_name"])
-    #     return sorted_authors
+        # if sort_by == 'birth_year':
+        #     sorted_authors = input_authors.sort(key=get_birth_year)
+        # if sort_by == 'last_name':
+        #     sorted_authors = sorted(input_authors, key= author["last_name"])
+        return sorted_authors
     
 
 
 
         
 
-    # def get_author_from_id(self, id):
-    #     author_list = []
-    #     for author in self.author_list:
-    #         if author.get_id() == id:
-    #             target_author = author.get_author()
-    #             author_list.append(author_list)
-    #         # print(author.get_id())
-    #     return self.author_list
-    #     # for indexed_author in self.author_list:
-    #     #     if indexed_author.get_id() == id:
-    #     #         target_author = indexed_author.get_author()
-    #     # try:
-    #     #     return target_author
-    #     # except:
-    #     #     raise Exception(ValueError)
+    def get_author_from_id(self, id):
+        author_list = []
+        for author in self.author_list:
+            if author.get_id() == id:
+                target_author = author.get_author()
+                author_list.append(author_list)
+            # print(author.get_id())
+        return self.author_list        
 
-    # def get_author_from_book_id(self, book_id, book_author_link_list, author_list=[]):
-    #     books_authors_ids = book_author_link_list.get_author_from_book(book_id)
-    #     author_list.append(self.get_author_from_id(id))
-    #     return author_list
+    def get_author_from_book_id(self, book_id, book_author_link_list, author_list=[]):
+        books_authors_ids = book_author_link_list.get_author_from_book(book_id)
+        author_list.append(self.get_author_from_id(id))
+        return author_list
 
-    # def get_author_from_search_text(self, search_text, author_list=[]):
-    #     search_text = search_text.lower()
-    #     for indexed_author in self.author_list:
-    #         if ((search_text in indexed_author.get_first_name().lower()
-    #             or search_text in indexed_author.get_last_name().lower())
-    #             and indexed_author.get_author() not in author_list):
-    #             author_list.append(indexed_author.get_author())
-    #     return author_list
+    def get_author_from_search_text(self, search_text, author_list=[]):
+        search_text = search_text.lower()
+        for indexed_author in self.author_list:
+            if ((search_text in indexed_author.get_first_name().lower()
+                or search_text in indexed_author.get_last_name().lower())
+                and indexed_author.get_author() not in author_list):
+                author_list.append(indexed_author.get_author())
+        return author_list
 
-    # def get_author_from_start_year(self, start_year, author_list=[]):
-    #     for indexed_author in self.author_list:
-    #         if ((indexed_author.get_birth_year() >= start_year)
-    #             and indexed_author.get_author() not in author_list):
-    #             author_list.append(indexed_author.get_author())
-    #     return author_list
+    def get_author_from_start_year(self, start_year, author_list=[]):
+        for indexed_author in self.author_list:
+            if ((indexed_author.get_birth_year() >= start_year)
+                and indexed_author.get_author() not in author_list):
+                author_list.append(indexed_author.get_author())
+        return author_list
 
-    # def get_author_from_end_year(self, end_year, author_list=[]):
-    #     for indexed_author in self.author_list:
-    #         if ((indexed_author.get_birth_year() <= end_year)
-    #             and indexed_author.get_author() not in author_list):
-    #             author_list.append(indexed_author.get_author())
-    #     return author_list
+    def get_author_from_end_year(self, end_year, author_list=[]):
+        for indexed_author in self.author_list:
+            if ((indexed_author.get_birth_year() <= end_year)
+                and indexed_author.get_author() not in author_list):
+                author_list.append(indexed_author.get_author())
+        return author_list
 
-    # def grab_last_name(author):
-    #     return author.get_last_name()
+    def grab_last_name(author):
+        return author.get_last_name()
 
-    # def sort_author_list(self, sort_by='last_name', author_list=[]):
-    #     # if not author_list:
-    #     #     return []
-    #     # if sort_by == 'birth_year':
-    #     #     author_list = sorted(author_list, key=lambda
-    #     #         k: (-k['birth_year'], k['last_name'], k['first_name']))
-    #     # if sort_by == 'last_name':
-    #     #     author_list = sorted(author_list, key=lambda
-    #     #         k: (k['last_name'], k['first_name'], -k['birth_year']))
+    def sort_author_list(self, sort_by='last_name', author_list=[]):
+        if not author_list:
+            return []
+        if sort_by == 'birth_year':
+            author_list = sorted(author_list, key=lambda
+                k: (-k['birth_year'], k['last_name'], k['first_name']))
+        if sort_by == 'last_name':
+            author_list = sorted(author_list, key=lambda
+                k: (k['last_name'], k['first_name'], -k['birth_year']))
 
-    #     if not author_list:
-    #         return []
-    #     # if sort_by == 'birth_year':
-            
-    #     if sort_by == 'last_name':
-    #         author_list = author_list.sort(key=grab_last_name)
-
-    #     return author_list
+        return author_list
 

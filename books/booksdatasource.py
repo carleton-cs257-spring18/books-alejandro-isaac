@@ -89,8 +89,5 @@ class BooksDataSource:
         if end_year != None:
             author_list = self.all_authors.filter_authors_by_end_year(end_year, author_list)
 
-        # author_list = self.all_authors.sort_authors(author_list, sort_by)
-        #didn't finish sort method
+        author_list = self.all_authors.sort_author_list(sort_by, author_list)
         return author_list
-
-        # return []
