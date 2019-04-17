@@ -45,19 +45,6 @@ class AuthorList:
     def get_birth_year(author):
         return author["birth_year"]
 
-    def sort_authors(self,input_authors, sort_by):
-        sorted_authors = []
-        print(input_authors.sort(key =))
-
-        # if sort_by == 'birth_year':
-        #     sorted_authors = input_authors.sort(key=get_birth_year)
-        # if sort_by == 'last_name':
-        #     sorted_authors = sorted(input_authors, key= author["last_name"])
-        return sorted_authors
-    
-
-
-
         
 
     def get_author_from_id(self, id):
