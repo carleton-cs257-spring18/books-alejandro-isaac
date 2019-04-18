@@ -28,9 +28,8 @@ class BooksDataSourceTest(unittest.TestCase):
         pass
 
     def test_books_search_by_author(self):
-        books = self.books_data_source.books(author_id=10)
-        for book in books:
-            self.assertTrue(book['id'] == 10)
+        book = self.books_data_source.books(author_id=10)
+        self.assertEqual({'id':10,'title':'Main Street','publication_year':1920}, book[0])
         pass
 
     def test_books_invalid_author_id(self):
@@ -51,7 +50,6 @@ class BooksDataSourceTest(unittest.TestCase):
 
     def test_correct_author(self):
         austen_correct = {'id':4, 'last_name':'Austen', 'first_name':'Jane', 'birth_year':1775, 'death_year':1817}
-        print(self.books_data_source.author(author_id=4))
         self.assertEqual(austen_correct, self.books_data_source.author(author_id=4))
 
     def test_invalid_author_id(self):
