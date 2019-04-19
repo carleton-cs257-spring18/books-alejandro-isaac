@@ -89,9 +89,27 @@ class BooksDataSourceTest(unittest.TestCase):
             self.assertTrue(author['birth_year'] <= 1875)
         pass
 
+    def test_authors_sort_by_last_name(self):
+        authors_sorted_by_last_name = self.books_data_source.authors(sort_by="last_name")
+        previous_author = authors_sorted_by_last_name[0]
+        for author in authors_sorted_by_last_name:
+            self.assertTrue(author['last_name'] >= previous_author['last_name'])
+            previous_author = author
+        pass
+
+    def test_authors_sort_by_birth_year(self):
+        authors_sorted_by_birth_year = self.books_data_source.authors(sort_by="birth_year")
+        previous_author = authors_sorted_by_birth_year[0]
+        for author in authors_sorted_by_birth_year:
+            self.assertTrue(author['birth_year'] <= previous_author['birth_year'])
+            previous_author = author
+        pass
+
     def test_authors_invalid_book_id(self):
         self.assertRaises(ValueError, self.books_data_source.authors, book_id = -3)
         pass
+
+    
 
 if __name__ == '__main__':
     unittest.main()
